@@ -11,7 +11,7 @@ public class Click : MonoBehaviour {
 
     private void Update(){
         goldDisplay.text = "Gold: " + gold;
-        gpc.text = "GPC: " + goldperclick;
+        gpc.text = goldperclick + " gold/click";
         
     }
 

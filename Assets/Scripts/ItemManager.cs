@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeManager : MonoBehaviour {
-    public Click click;
+public class ItemManager:MonoBehaviour {
+
     public UnityEngine.UI.Text itemInfo;
+    public Click click;
     public float cost;
-    public int count = 0;
-    public int clickPower;
+    public int tickValue;
+    public int count;
     public string itemName;
     private float baseCost;
 
@@ -16,21 +17,13 @@ public class UpgradeManager : MonoBehaviour {
     }
 
     private void Update() {
-        itemInfo.text = itemName + "\nCost: " + cost + "\nPower: +" + clickPower;
+        itemInfo.text = itemName + "\nCost: " +cost +"\nGold: " + tickValue + "/s";
     }
-
-    public void PurchasedUpgrade() {
+    public void PurchasedItem() {
         if(click.gold >= cost) {
             click.gold -= cost;
             count += 1;
-            click.goldperclick +=clickPower;
-            // base cost times 1 15% for item count
             cost = Mathf.Round(baseCost * Mathf.Pow(1.15f, count));
-
         }
     }
-
-
-
-	
 }
