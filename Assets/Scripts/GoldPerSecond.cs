@@ -15,8 +15,8 @@ public class GoldPerSecond : MonoBehaviour {
     private void Update() {
         gpsDisplay.text = getGoldPerSec() + " gold/sec";
     }
-    public int getGoldPerSec() {
-        int tick = 0;
+    public float getGoldPerSec() {
+        float tick = 0;
         foreach(ItemManager item in items) {
             tick += item.count * item.tickValue;
 
@@ -25,13 +25,13 @@ public class GoldPerSecond : MonoBehaviour {
     }
 
     public void AutoGoldPerSec() {
-        click.gold += getGoldPerSec();
+        click.gold += getGoldPerSec() /10;
     }
 
     IEnumerator AutoTick() {
         while(true) {
             AutoGoldPerSec();
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.10f);
         }
     }
 

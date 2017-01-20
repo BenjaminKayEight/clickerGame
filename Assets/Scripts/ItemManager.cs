@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemManager:MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class ItemManager:MonoBehaviour {
     public int count;
     public string itemName;
     private float baseCost;
+    public Color affordable;
+    public Color standard;
 
     private void Start() {
         baseCost = cost;
@@ -18,6 +21,12 @@ public class ItemManager:MonoBehaviour {
 
     private void Update() {
         itemInfo.text = itemName + "\nCost: " +cost +"\nGold: " + tickValue + "/s";
+        //check if enough gold for upgrade
+        if(click.gold >= cost) {
+            GetComponent<Image>().color = affordable;
+        } else {
+            GetComponent<Image>().color = standard;
+        }
     }
     public void PurchasedItem() {
         if(click.gold >= cost) {

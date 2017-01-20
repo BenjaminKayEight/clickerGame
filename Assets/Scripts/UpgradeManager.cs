@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour {
     public Click click;
@@ -11,12 +12,22 @@ public class UpgradeManager : MonoBehaviour {
     public string itemName;
     private float baseCost;
 
+    public Color affordable;
+    public Color standard;
+
     private void Start() {
         baseCost = cost;
     }
 
     private void Update() {
         itemInfo.text = itemName + "\nCost: " + cost + "\nPower: +" + clickPower;
+
+        //check if enough gold for upgrade
+        if(click.gold >= cost) {
+            GetComponent<Image>().color = affordable;
+        }else {
+            GetComponent<Image>().color = standard; 
+        }
     }
 
     public void PurchasedUpgrade() {
