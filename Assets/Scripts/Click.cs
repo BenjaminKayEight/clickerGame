@@ -8,10 +8,10 @@ public class Click : MonoBehaviour {
 
     public float gold = 0;
     public int goldperclick = 1;
-
+    //gold.ToString("F0")
     private void Update(){
-        goldDisplay.text = "Gold: " + gold.ToString("F0");
-        gpc.text = goldperclick + " gold/click";
+        goldDisplay.text = "Gold: " + CurrencyConverter.Instance.GetCurrencyIntoString(gold, false, false);
+        gpc.text = CurrencyConverter.Instance.GetCurrencyIntoString(goldperclick,false,true);
         
     }
 
